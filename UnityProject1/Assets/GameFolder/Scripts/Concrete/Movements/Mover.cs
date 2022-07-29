@@ -17,6 +17,7 @@ public class Mover
     public void FixedTick()
     {
         _rigidBody.AddRelativeForce(Vector3.up * Time.deltaTime * _playerController.Force);
+        
     }
 }
 }

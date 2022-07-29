@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 2208173978495839788}
   - component: {fileID: 2535120867600947453}
   - component: {fileID: 2208173978495839789}
+  - component: {fileID: 519752344882039725}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -62,8 +63,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c2a5da1d277f2c4a862b66a14fdd6b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _turnSpeed: 10
-  _force: 75
+  _turnSpeed: 35
+  _force: 55
+  showSpeed: 0
 --- !u!54 &2208173978495839789
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -80,6 +82,21 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 56
   m_CollisionDetection: 0
+--- !u!114 &519752344882039725
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 916607770961517494}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5498963bbb64a0f48b98dd8c0a6e78ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _maxFuel: 100
+  _currentFuel: 0
+  _particle: {fileID: 2208173978504088462}
 --- !u!1 &2208173978764370716
 GameObject:
   m_ObjectHideFlags: 0
@@ -971,7 +988,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 2906
+  m_VersionIndex: 2915
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -1232,6 +1249,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1c20c7996d683754db1f0f62a361952c, type: 3}
+--- !u!198 &2208173978504088462 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 19800002, guid: 1c20c7996d683754db1f0f62a361952c, type: 3}
+  m_PrefabInstance: {fileID: 2208173978517853260}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &2208173978518245064 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400004, guid: 1c20c7996d683754db1f0f62a361952c, type: 3}

@@ -10,14 +10,17 @@ public class PlayerController : MonoBehaviour
 {
     [SerializeField] float _turnSpeed = 10f;
     [SerializeField] float _force = 55f;
+    
     // Rigidbody _rigidbody;
     DefaultInput _input;
     Mover _mover;
+    Fuel _fuel;
 
     Rotater _rotater;
-    bool _isForceUp;
+    bool _canForceUp;
     float _leftRight;
     public float TurnSpeed => _turnSpeed;
+    
     public float Force => _force;
     private void Awake() {
         // Rigidbodydeki propertiesleri class a otururuk
@@ -25,17 +28,19 @@ public class PlayerController : MonoBehaviour
         _mover = new Mover(this);
         _input = new DefaultInput();
         _rotater = new Rotater(this);
+        _fuel = GetComponent<Fuel>();
     }
     
     // update her bir frame de bir isleyir
     private void Update() {
-        Debug.Log(_input.LeftRight);
+        // Debug.Log(_force);
         //Input alir
-        if (_input.IsForceUp){
-        _isForceUp = true;
+        if (_input.IsForceUp && !_fuel.IsEmpty){
+        _canForceUp = true;
         }
         else{
-        _isForceUp = false;
+        _canForceUp = false;
+        _fuel.FuelIncrease(0.01f);
         }
         _leftRight = _input.LeftRight;
     }
@@ -43,10 +48,11 @@ public class PlayerController : MonoBehaviour
     // Fixed update ise her 0.02 saniyede bir calisir
     private void FixedUpdate() {
         // Fiziki isler(yerime, toqqusma)
-        if(_isForceUp){
-        //     Debug.Log(Vector3.up * Time.deltaTime * _force);
-        //     _rigidbody.AddForce(Vector3.up * Time.deltaTime * _force);
+        if(_canForceUp){
+            // Debug.Log(Vector3.up * Time.deltaTime * _force);
+            // Debug.Log(_rigidbody.AddForce(Vector3.up * Time.deltaTime * _force));
         _mover.FixedTick();
+        _fuel.FuelDecrease(0.2f);
 
         }
         _rotater.FixedTick(_leftRight);
