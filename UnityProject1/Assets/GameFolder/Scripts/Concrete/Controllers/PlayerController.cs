@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityProject1.Movements;
 using UnityProject1.Inputs;
+using UnityProject1.Managers;
 
 namespace UnityProject1.Controllers{
 public class PlayerController : MonoBehaviour
@@ -15,10 +16,12 @@ public class PlayerController : MonoBehaviour
     DefaultInput _input;
     Mover _mover;
     Fuel _fuel;
-
     Rotater _rotater;
+    
+    bool _canMove;
     bool _canForceUp;
     float _leftRight;
+    
     public float TurnSpeed => _turnSpeed;
     
     public float Force => _force;
@@ -30,9 +33,20 @@ public class PlayerController : MonoBehaviour
         _rotater = new Rotater(this);
         _fuel = GetComponent<Fuel>();
     }
+    private void Start() {
+        _canMove = true;
+    }
+    private void OnEnable() {
+        GameManager.Instance.OnGameOver += HandleOnEventTriggered;
+    }
+    private void OnDisable() {
+        GameManager.Instance.OnGameOver -= HandleOnEventTriggered;
+    }
     
     // update her bir frame de bir isleyir
     private void Update() {
+
+        if(!_canMove) return; // Eger obyekt hereket ede bilmirse
         // Debug.Log(_force);
         //Input alir
         if (_input.IsForceUp && !_fuel.IsEmpty){
@@ -56,6 +70,13 @@ public class PlayerController : MonoBehaviour
 
         }
         _rotater.FixedTick(_leftRight);
+    }
+    private void HandleOnEventTriggered()
+    {
+        _canForceUp=false;
+        _canMove = false;
+        _leftRight=0f;
+        _fuel.FuelIncrease(0f);
     }
 }
 }

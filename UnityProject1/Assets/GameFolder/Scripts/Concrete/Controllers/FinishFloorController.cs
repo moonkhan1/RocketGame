@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityProject1.Managers;
 
 namespace UnityProject1.Controllers{
 public class FinishFloorController : MonoBehaviour
@@ -26,7 +27,7 @@ public class FinishFloorController : MonoBehaviour
         else
         {
             // Eger player platformanin sagina,soluna, asagisina deyerese Game Over olur
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+           GameManager.Instance.GameOver();
         }
         
     }
