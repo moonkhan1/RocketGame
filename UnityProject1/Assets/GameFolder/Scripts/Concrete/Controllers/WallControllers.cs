@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityProject1ş.Managers;
+using UnityProject1.Managers;
 
 namespace UnityProject1.Controllers{
 public class WallControllers : MonoBehaviour

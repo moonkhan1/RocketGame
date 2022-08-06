@@ -23,6 +23,7 @@ public class FinishFloorController : MonoBehaviour
             // Debug.Log("asdas");
             _finishFireWorks.gameObject.SetActive(true);
             _finishLights.gameObject.SetActive(true);
+            GameManager.Instance.MissionSuccess();
         }
         else
         {

@@ -38,9 +38,11 @@ public class PlayerController : MonoBehaviour
     }
     private void OnEnable() {
         GameManager.Instance.OnGameOver += HandleOnEventTriggered;
+        GameManager.Instance.OnMissionSuccess += HandleOnEventTriggered;
     }
     private void OnDisable() {
         GameManager.Instance.OnGameOver -= HandleOnEventTriggered;
+        GameManager.Instance.OnMissionSuccess -= HandleOnEventTriggered;
     }
     
     // update her bir frame de bir isleyir
