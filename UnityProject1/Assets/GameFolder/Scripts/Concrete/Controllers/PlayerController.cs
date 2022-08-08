@@ -25,6 +25,7 @@ public class PlayerController : MonoBehaviour
     public float TurnSpeed => _turnSpeed;
     
     public float Force => _force;
+    public bool CanMove => _canMove;
     private void Awake() {
         // Rigidbodydeki propertiesleri class a otururuk
         // _rigidbody = GetComponent<Rigidbody>();

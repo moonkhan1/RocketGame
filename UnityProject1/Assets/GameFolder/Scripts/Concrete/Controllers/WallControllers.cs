@@ -11,8 +11,8 @@ public class WallControllers : MonoBehaviour
     {
         PlayerController player = other.collider.GetComponent<PlayerController>();
 
-        // Divar ile toqqusan obyekt bos olmazsa(yeni player olarsa) oyunu yeniden baslat
-        if(player != null)
+        // Divar ile toqqusan obyekt bos olmazsa(yeni player olarsa) oyun Game over dir
+        if(player != null && player.CanMove)
         {
             GameManager.Instance.GameOver();
             // SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);

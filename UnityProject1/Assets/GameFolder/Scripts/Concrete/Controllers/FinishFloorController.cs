@@ -14,7 +14,7 @@ public class FinishFloorController : MonoBehaviour
     {
         PlayerController player = other.collider.GetComponent<PlayerController>();  
 
-        if(player == null) return;
+        if(player == null || !player.CanMove) return;
 
         //Eger obyekt(player) platformaya yuxaridan deyerse qalib olur
         if(other.GetContact(0).normal.y == -1)
