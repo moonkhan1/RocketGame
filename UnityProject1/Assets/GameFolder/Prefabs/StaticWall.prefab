@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 997980002453680462}
   - component: {fileID: 3098633194105186155}
   - component: {fileID: 5047281393725127073}
-  - component: {fileID: 1965526251743271159}
+  - component: {fileID: 2864252585631076002}
   m_Layer: 0
-  m_Name: Wall
+  m_Name: StaticWall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -98,7 +98,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &1965526251743271159
+--- !u!114 &2864252585631076002
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -107,6 +107,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 6581437205205434156}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 58a9aa6ed488f3e489c8cae7db43eedf, type: 3}
+  m_Script: {fileID: 11500000, guid: ccf66afc2bfd6e042871e2650c99c216, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
