@@ -10,9 +10,9 @@ public class MoverWallController : WallControllers
     // Hereketli divar verilen araliq arasinda gedib gelmelidi
     [SerializeField] Vector3 _direction;
     // [Range(0f, 1f)]
-    [SerializeField] float _factor;
     [SerializeField] float _speed = 1f;
 
+    float _factor;
     Vector3 _startPosition;
     private const float FULL_CIRCLE = Mathf.PI * 2f;
 
@@ -24,7 +24,10 @@ public class MoverWallController : WallControllers
         float cycle = Time.time / _speed;
         float sinWave = Mathf.Sin(cycle * FULL_CIRCLE);
         // Mover Divarin hereketi
-        _factor = Mathf.Abs(sinWave); // BU 0 ile 1 arasinda range yaradir. Menfi olmamasi ucun Absolute metodundan isdifade edirik
+
+        // _factor = Mathf.Abs(sinWave); // BU 0 ile 1 arasinda range yaradir. Menfi olmamasi ucun Absolute metodundan isdifade edirik
+        _factor = sinWave / 2f + 0.5f; // Divarlarin hemde menfi istiqametde getmesi ucun.
+        
         Vector3 offset = _direction * _factor;
         transform.position = offset + _startPosition;
     }
