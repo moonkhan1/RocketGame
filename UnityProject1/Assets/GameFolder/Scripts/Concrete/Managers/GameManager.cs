@@ -3,33 +3,36 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using System;
+using UnityProject1.Abstracts.Utilities;
+
 
 namespace UnityProject1.Managers
 {
-    public class GameManager : MonoBehaviour
+    public class GameManager : SingletonThisObject<GameManager>
     {
         public event System.Action OnGameOver; // Player divarlara deyerse oyuncu kontrolu kesilir
         public event System.Action OnMissionSuccess; // Player finish platformasina deyrese oyuncu kontrolu kesilir
 
-        // static olmaq butun yaradilacaq GameManager instanceleri ucun eyni olmaq demekdi
-        public static GameManager Instance { get; private set; }
-        private void Awake() 
-        {
-            SingletonThisGameObject();
-        }
-        private void SingletonThisGameObject()
-        {
-            if(Instance == null){
-                // Buradaki ilk yaradilan GameManager obyektini buradaki THIS e menimsedirik
-                Instance = this;
-                DontDestroyOnLoad(this.gameObject);
-            }
-            else
-            {
-                // Eger Eyni sehende bir GameObjectden birden cox yaradilmasina icaze vermesin
-                Destroy(this.gameObject);
-            }
-        }
+    private void Awake() 
+    {
+        SingletonThisGameObject(this);
+        // SoundManager.Instance.PlayMusic(2);
+    }
+
+// SingletonThisObject in abstract classini ayrica yaratdigimiz ucun buna ehtiyac qalmir 
+        // private void SingletonThisGameObject()
+        // {
+        //     if(Instance == null){
+        //         // Buradaki ilk yaradilan GameManager obyektini buradaki THIS e menimsedirik
+        //         Instance = this;
+        //         DontDestroyOnLoad(this.gameObject);
+        //     }
+        //     else
+        //     {
+        //         // Eger Eyni sehnede bir GameObjectden birden cox yaradilmasina icaze vermesin
+        //         Destroy(this.gameObject);
+        //     }
+        // }
 
         public void GameOver()
         {
@@ -50,7 +53,9 @@ namespace UnityProject1.Managers
          }
          private IEnumerator LoadLevelSceneAsync(int levelIndex)
          {
+            SoundManager.Instance.StopMusic(2);
             yield return SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex + levelIndex);
+            SoundManager.Instance.PlayMusic(1);
          }
 
          public void LoadMenuScene()
@@ -59,7 +64,9 @@ namespace UnityProject1.Managers
          }
          private IEnumerator LoadMenuSceneAsync()
          {
+            SoundManager.Instance.StopMusic(1);
             yield return SceneManager.LoadSceneAsync("Menu");
+            SoundManager.Instance.PlayMusic(2);
 
          }
 
